@@ -13,7 +13,11 @@ const validateUser = [
       .isLength({ min: 1, max: 10}).withMessage(`Last name ${lengthErr}`), 
    body("email").trim()
       .isEmail().withMessage("Must be a valid email address")
-      .normalizeEmail() //email sanitization function
+      .normalizeEmail(), //email sanitization function
+   body("age").optional({ values: "falsy" })
+      .isInt({ min: 18, max: 120}).withMessage("Age must be a number between 18 and 120")
+      .toInt() // sanitizes to integer
+
 ];
 
 exports.usersListGet = (req, res) => {
@@ -40,8 +44,8 @@ exports.usersCreatePost = [
         errors: errors.array(),
       });
     }
-    const { firstName, lastName, email } = matchedData(req);
-    usersStorage.addUser({ firstName, lastName, email });
+    const { firstName, lastName, email, age } = matchedData(req);
+    usersStorage.addUser({ firstName, lastName, email, age });
     res.redirect("/");
   }
 ];
@@ -66,8 +70,8 @@ exports.usersUpdatePost = [
             errors: errors.array(),
          });
       }
-      const { firstName, lastName, email } = matchedData(req);
-      usersStorage.updateUser(req.params.id, { firstName, lastName, email });
+      const { firstName, lastName, email, age } = matchedData(req);
+      usersStorage.updateUser(req.params.id, { firstName, lastName, email, age });
       res.redirect("/");
    }
 ];
