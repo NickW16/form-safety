@@ -16,8 +16,9 @@ const validateUser = [
       .normalizeEmail(), //email sanitization function
    body("age").optional({ values: "falsy" })
       .isInt({ min: 18, max: 120}).withMessage("Age must be a number between 18 and 120")
-      .toInt() // sanitizes to integer
-
+      .toInt(), // sanitizes to integer
+   body("bio").optional({ values: "falsy" })
+      .isLength({ max: 200 }).withMessage("User Bio (optional)"),
 ];
 
 exports.usersListGet = (req, res) => {
@@ -44,8 +45,8 @@ exports.usersCreatePost = [
         errors: errors.array(),
       });
     }
-    const { firstName, lastName, email, age } = matchedData(req);
-    usersStorage.addUser({ firstName, lastName, email, age });
+    const { firstName, lastName, email, age, bio } = matchedData(req);
+    usersStorage.addUser({ firstName, lastName, email, age, bio });
     res.redirect("/");
   }
 ];
@@ -70,8 +71,8 @@ exports.usersUpdatePost = [
             errors: errors.array(),
          });
       }
-      const { firstName, lastName, email, age } = matchedData(req);
-      usersStorage.updateUser(req.params.id, { firstName, lastName, email, age });
+      const { firstName, lastName, email, age, bio } = matchedData(req);
+      usersStorage.updateUser(req.params.id, { firstName, lastName, email, age, bio });
       res.redirect("/");
    }
 ];
