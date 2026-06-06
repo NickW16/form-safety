@@ -83,3 +83,20 @@ exports.usersDeletePost = (req, res) => {
   res.redirect("/");
 };
 
+// search logic
+
+exports.usersSearchGet = (req, res) => {
+   const searchTerm = req.query.search?.toLowerCase() || "";
+
+   const filteredUsers = usersStorage.getUsers().filter(user => 
+      user.firstName.toLowerCase().includes(searchTerm) ||
+      user.lastName.toLowerCase().includes(searchTerm)
+   );
+
+   res.render("index", {
+      title: "User List",
+      users: filteredUsers,
+      searchTerm: searchTerm,
+      noResults: filteredUsers.length === 0 && searchTerm !== "" // couldn't find
+   });
+};

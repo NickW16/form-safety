@@ -6,8 +6,16 @@
 </head>
 <body>
    <h1><%= title %></h1>
-   <ul>
-      <% if (users && users.length > 0) {%>
+   <form action="/search" method="GET">
+      <input type="text" name="search" id="searchField" value="<%= locals.searchTerm || '' %>" placeholder="Search by name...">
+      <button type="submit">Search</button>
+   </form>
+
+   <% if (locals.noResults) {  %>
+      <p>Couldn't find that user in the Database. Maybe try again?</p>
+      <p>Or go back to <a href="/">Home</a>?</p>
+      <% } else if (users && users.length > 0) { %>
+      <ul>
          <% users.forEach(user => { %>
             <li>
                ID: <%= user.id %>, Name: <%= user.firstName %> <%= user.lastName %>, Email: <%= user.email %>, Age: <%= user.age %>, Bio: <%= user.bio %>
@@ -17,9 +25,11 @@
                   </form>
             </li>
          <% }); %>
-      <% } %>
    </ul>
-   <a href="/create">Create a user</a>
+   <% } else { %>
+   <p>No users found.</p>
+   <% } %>   
+     <a href="/create">Create a user</a>
 </body>
 </html>
 
