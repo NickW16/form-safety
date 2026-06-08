@@ -5,6 +5,9 @@ const usersRouter = require("./routes/usersRouter");
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
+// setup css
+app.use(express.static(path.join(__dirname, 'public')));
+// setup routes
 app.use(express.urlencoded({ extended: true }));
 app.use("/", usersRouter);
 
