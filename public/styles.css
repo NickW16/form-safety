@@ -13,7 +13,6 @@ body {
    background-color:#2C363F;
    align-items: center;
    min-height: 100vh;
-   border: 2px solid;
    width: 100%;
 }
 
@@ -21,11 +20,12 @@ body {
    display: flex;
    flex-direction: column;
    min-height: 100vh;
+   align-items: center;
    text-align: left;
    padding: 0px 20px 0px 20px;
    background-color: #f2f5ea;
    border: 2px solid;
-   width: 80%
+   width: 50%;
 }
 
 h1 {
@@ -38,11 +38,15 @@ p {
    letter-spacing: 0.3px;
 }
 
-input, button {
+input, button, textarea {
    padding: 4px;
    border: solid 2px;
    border-radius: 6px;
    margin: 4px;
+}
+
+input:focus, textarea:focus {
+   outline: solid 2px #e75a7c;
 }
 
 button {
@@ -67,6 +71,13 @@ button {
    border-color: #e75a7c;
 }
 
+.create-user-form form {
+   display: flex;
+   flex-direction: column;
+   min-width: 500px;
+   margin-bottom: 20px;
+}
+
 button:hover {
    color: black;
    background-color: white;
@@ -75,12 +86,11 @@ button:hover {
 
 ul {
    display: grid;
-   grid-template:
 }
 
 li {
    display: flex;
-   background-color: #d6dbd2;
+   background-color: white;
    margin: 10px 10px 10px 0px;
    gap: 5px;
    padding: 5px;
@@ -88,6 +98,5 @@ li {
    border: 2px solid;
    border-radius: 8px;
    max-width: 720px;
-   flex-wrap: 1;
 }
 

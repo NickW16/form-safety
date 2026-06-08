@@ -3,24 +3,30 @@
 <head>
    <meta charset="UTF-8">
    <title><%= title %></title>
+   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-   <h1><%= title %></h1>
-   <%- include("partials/errors.ejs") %>
-      <form action="/create" method="POST">
-      <label for="firstName">First Name: </label>
-      <input type="text" name="firstName" id="firstName" required>
-      <label for="lastName">Last Name: </label>
-      <input type="text" name="lastName" id="lastName" required>
-      <label for="email">Email: </label>
-      <input type="email" name="email" id="email" required>
-      <label for="age">Age(optional): </label>
-      <input type="number" name="age" id="age">
-      <label for="bio">Bio(optional):</label>
-      <textarea id="bio" name="bio" cols="30" rows="10" placeholder="Information about you!"></textarea>
-
-      <button type="submit">Submit</button>
-   </form>
-   <a href="/">Back to Homepage</a>
+   <div class="main-container">
+      <h1><%= title %></h1>
+      <%- include("partials/errors.ejs") %>
+      <div class="create-user-form">
+            <form action="/create" method="POST">
+            <label for="firstName">First Name: </label>
+            <input type="text" name="firstName" id="firstName" required>
+            <label for="lastName">Last Name: </label>
+            <input type="text" name="lastName" id="lastName" required>
+            <label for="email">Email: </label>
+            <input type="email" name="email" id="email" required>
+            <label for="age">Age(optional): </label>
+            <input type="number" name="age" id="age">
+            <label for="bio">Bio(optional):</label>
+            <textarea id="bio" name="bio" cols="30" rows="10" placeholder="Information about you!"></textarea>
+               <button type="submit">Submit</button>
+            </form>
+      </div>
+      <a href="/">
+         <button class="create-button">Back to Homepage</button>
+      </a>
+   </div>
 </body>
 </html>
